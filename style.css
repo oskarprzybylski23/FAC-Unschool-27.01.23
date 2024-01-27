@@ -7,7 +7,6 @@ body {
 }
 
 p {
-    height: 20px;
     font-size: 20px;
     color: cadetblue;
 }
@@ -25,6 +24,7 @@ textarea {
     height: 10vh;
     font-size: 20px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 button {
@@ -42,11 +42,11 @@ input {
     margin-top: 5px;
 }
 
-#user-text-placeholder {
+.user {
     color: brown;
 }
 
-#response-placeholder {
+.response {
     color: cadetblue;
 }
 
@@ -55,4 +55,6 @@ input {
     height: 60vh;
     border: 1px solid black;
     background-color: lightgray;
+    padding: 10px;
+    overflow-y: auto;
 }

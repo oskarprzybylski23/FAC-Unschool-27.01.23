@@ -1,5 +1,13 @@
 let apiKey = '';
 
+function appendToConversation(role, text) {
+  const conversationField = document.getElementById('conversation-field');
+  const messageParagraph = document.createElement('p');
+  messageParagraph.className = role; // This could be 'user' or 'response' for styling purposes
+  messageParagraph.innerText = `${role === 'user' ? 'User: ' : 'AI: '}${text}`;
+  conversationField.appendChild(messageParagraph);
+}
+
 function sendToOpenAI(userInput) {
   // Ensure apiKey is not empty
   if (!apiKey) {
@@ -49,9 +57,8 @@ function sendToOpenAI(userInput) {
       console.log(data);
       // Process the response here
       // For example, display the response in the HTML
-      document.getElementById(
-        'response-placeholder'
-      ).innerText = `chat-GPT: ${data.choices[0].message.content}`;
+      const aiResponse = data.choices[0].message.content;
+      appendToConversation('response', aiResponse);
     })
     .catch((error) => {
       console.error('Error fetching data: ', error);
@@ -62,7 +69,7 @@ function sendToOpenAI(userInput) {
 
 document.getElementById('textarea-submit').onclick = function () {
   let text = document.getElementById('user-text').value;
-  document.getElementById('user-text-placeholder').innerText = `user: ${text}`;
+  appendToConversation('user', text);
   sendToOpenAI(text);
 };
 
