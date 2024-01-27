@@ -1,7 +1,8 @@
 let apiKey = '';
 
+const conversationField = document.getElementById('conversation-field');
+
 function appendToConversation(role, text) {
-  const conversationField = document.getElementById('conversation-field');
   const messageParagraph = document.createElement('p');
   messageParagraph.className = role; // This could be 'user' or 'response' for styling purposes
   messageParagraph.innerText = `${role === 'user' ? 'User: ' : 'AI: '}${text}`;
@@ -13,26 +14,34 @@ function sendToOpenAI(userInput) {
   if (!apiKey) {
     console.error('API key is not set.');
     alert('set API key first!');
-    document.getElementById('user-text-placeholder').innerText = '';
+    if (conversationField.lastChild) {
+      conversationField.removeChild(conversationField.lastChild);
+    }
     return;
   }
 
   // API URL
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
+  const messagesElements =
+    document.getElementById('conversation-field').children;
+
+  //   contruct conversation history array
+  let messages = Array.from(messagesElements).map((messageElement) => {
+    return {
+      role: messageElement.className, // Assuming the className is 'user' or 'response'
+      content: messageElement.innerText
+        .replace(/^User: /, '')
+        .replace(/^AI: /, ''),
+    };
+  });
+
+  console.log(messages);
+
   // Data to be sent in the request body
   const data = {
     model: 'gpt-3.5-turbo', // Specify the model here
-    messages: [
-      {
-        role: 'system',
-        content: 'You are a helpful assistant.',
-      },
-      {
-        role: 'user',
-        content: userInput,
-      },
-    ],
+    messages: messages,
   };
 
   // Fetch options
@@ -45,6 +54,7 @@ function sendToOpenAI(userInput) {
     body: JSON.stringify(data),
   };
 
+  console.log(JSON.stringify(data));
   // Send request to OpenAI API
   fetch(apiUrl, fetchOptions)
     .then((response) => {
@@ -55,15 +65,16 @@ function sendToOpenAI(userInput) {
     })
     .then((data) => {
       console.log(data);
-      // Process the response here
-      // For example, display the response in the HTML
+
       const aiResponse = data.choices[0].message.content;
-      appendToConversation('response', aiResponse);
+      appendToConversation('system', aiResponse);
     })
     .catch((error) => {
       console.error('Error fetching data: ', error);
       alert('Error! Check your API key!');
-      document.getElementById('user-text-placeholder').innerText = '';
+      if (conversationField.lastChild) {
+        conversationField.removeChild(conversationField.lastChild);
+      }
     });
 }
 
