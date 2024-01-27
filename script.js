@@ -55,6 +55,8 @@ function sendToOpenAI(userInput) {
     })
     .catch((error) => {
       console.error('Error fetching data: ', error);
+      alert('Error! Check your API key!');
+      document.getElementById('user-text-placeholder').innerText = '';
     });
 }
 
