@@ -62,11 +62,13 @@ input {
 }
 
 .user {
-    color: brown;
+    color: rgb(76, 76, 76);
+    opacity: 70%;
 }
 
 .response {
     color: cadetblue;
+    opacity: 70%;
 }
 
 #conversation-field {
@@ -77,4 +79,8 @@ input {
     background-color: rgb(240, 240, 240);
     padding: 10px;
     overflow-y: auto;
+}
+
+.message-label {
+    font-weight: bold;
 }

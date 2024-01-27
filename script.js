@@ -5,9 +5,20 @@ const conversationField = document.getElementById('conversation-field');
 function appendToConversation(role, text) {
   const messageParagraph = document.createElement('p');
   messageParagraph.className = role; // This could be 'user' or 'response' for styling purposes
-  messageParagraph.innerText = `${
-    role === 'user' ? 'User: ' : 'ChatGPT: '
-  }${text}`;
+
+  const labelSpan = document.createElement('span');
+  labelSpan.className = 'message-label';
+  labelSpan.textContent = role === 'user' ? 'User' : 'ChatGPT';
+
+  const textSpan = document.createElement('span');
+  textSpan.className = 'message-text';
+  textSpan.textContent = text;
+
+  // Append the label and text to the paragraph
+  messageParagraph.appendChild(labelSpan);
+  messageParagraph.appendChild(document.createElement('br')); // Line break between label and text
+  messageParagraph.appendChild(textSpan);
+
   conversationField.appendChild(messageParagraph);
 }
 
