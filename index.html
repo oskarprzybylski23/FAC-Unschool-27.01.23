@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,9 +9,14 @@
     <body>
         <h1>Chat-GPT Clone</h1>
         <p id="user-text-placeholder"></p>
-        <form action="submit">
+        <form>
             <textarea name="input" id="user-text" cols="30" rows="10"></textarea>
             <button id="textarea-submit" type="button">Submit</button>
+        </form>
+        <form id="API-form">
+            <label>Input API Key</label>
+            <input type="text" id="input-api-key" name="input-api-key" value="">
+            <button type="submit">Submit API Key</button>
         </form>
         
     </body>
