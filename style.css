@@ -1,3 +1,7 @@
+:root {
+    --main-font: "Noto Sans", sans-serif;
+}
+
 body {
     height: 100vh;
     display: flex;
@@ -6,9 +10,15 @@ body {
     align-items: center;
 }
 
+
+h1 {
+    font-family: var(--main-font);
+}
+
 p {
     font-size: 20px;
     color: cadetblue;
+    font-family: var(--main-font);
 }
 
 form {
@@ -17,6 +27,7 @@ form {
     flex-direction: column;
     /* gap: 20px; */
     align-items: center;
+    font-family: var(--main-font);
 }
 
 textarea {
@@ -25,6 +36,7 @@ textarea {
     font-size: 20px;
     border-radius: 5px;
     padding: 10px;
+    font-family: var(--main-font);
 }
 
 button {
@@ -32,6 +44,12 @@ button {
     height: fit-content;
     min-height: 30px;
     margin-top: 20px;
+    font-family: var(--main-font);
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: cadetblue;
 }
 
 label {
@@ -40,6 +58,7 @@ label {
 
 input {
     margin-top: 5px;
+    font-size: 15px;
 }
 
 .user {
@@ -53,8 +72,9 @@ input {
 #conversation-field {
     width: 50vw;
     height: 60vh;
-    border: 1px solid black;
-    background-color: lightgray;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
     padding: 10px;
     overflow-y: auto;
 }

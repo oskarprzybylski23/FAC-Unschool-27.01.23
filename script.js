@@ -5,7 +5,9 @@ const conversationField = document.getElementById('conversation-field');
 function appendToConversation(role, text) {
   const messageParagraph = document.createElement('p');
   messageParagraph.className = role; // This could be 'user' or 'response' for styling purposes
-  messageParagraph.innerText = `${role === 'user' ? 'User: ' : 'AI: '}${text}`;
+  messageParagraph.innerText = `${
+    role === 'user' ? 'User: ' : 'ChatGPT: '
+  }${text}`;
   conversationField.appendChild(messageParagraph);
 }
 
