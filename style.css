@@ -1,0 +1,31 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    height: 20px;
+    font-size: 20px;
+    color: cadetblue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+textarea {
+    width: 50vw;
+    height: 30vh;
+    font-size: 20px;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+}
